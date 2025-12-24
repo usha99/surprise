@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4a90e2;
+            --secondary: #a8d5ff;
+            --accent: #5b7ce6;
+            --pink: #ff6b9d;
+            --purple: #9b59b6;
+            --light: #f0f8ff;
+            --dark: #1a2332;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #4a90e2 0%, #667eea 25%, #9b59b6 50%, #e94ca3 75%, #ff8dc7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .hearts-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: float-up linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 40px 30px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .click-screen {
+            position: relative;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 100vh;
+            cursor: pointer;
+            transition: opacity 0.5s ease;
+            padding: 20px;
+        }
+
+        .click-screen.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .click-prompt {
+            text-align: center;
+            animation: floatPrompt 2s ease-in-out infinite;
+            max-width: 90%;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            padding: 40px 30px;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes floatPrompt {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .click-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 
+                3px 3px 6px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(255, 255, 255, 0.3),
+                0 0 40px rgba(74, 144, 226, 0.5);
+        }
+
+        .click-subtitle {
+            font-size: clamp(1.1rem, 4vw, 1.5rem);
+            color: white;
+            font-weight: 600;
+            text-shadow: 
+                2px 2px 4px rgba(0, 0, 0, 0.5),
+                0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 0 20px;
+        }
+
+        .click-counter {
+            margin-top: 30px;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            animation: pulse 1s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+        }
+
+        .reveal {
+            animation: revealElement 0.8s ease-out forwards !important;
+        }
+
+        @keyframes revealElement {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 6vw, 3rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--purple), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            filter: drop-shadow(2px 2px 4px rgba(74, 144, 226, 0.3));
+            line-height: 1.2;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 3.5vw, 1.3rem);
+            color: var(--dark);
+            margin-bottom: 30px;
+            font-weight: 400;
+            padding: 0 10px;
+        }
+
+        .love-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            font-style: italic;
+            color: var(--purple);
+            margin: 20px auto;
+            padding: 15px 20px;
+            max-width: 500px;
+            border-left: 3px solid var(--primary);
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.05), rgba(155, 89, 182, 0.05));
+            border-radius: 10px;
+        }
+
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+            padding: 0 10px;
+        }
+
+        .time-box {
+            background: linear-gradient(135deg, var(--primary), var(--accent), var(--purple));
+            border-radius: 15px;
+            padding: 20px 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.4);
+            transition: transform 0.3s ease;
+            min-width: 70px;
+        }
+
+        .time-box:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .time-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shine 3s ease-in-out infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+        }
+
+        .time-number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 900;
+            color: white;
+            display: block;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .time-label {
+            font-size: clamp(0.7rem, 2vw, 0.85rem);
+            color: rgba(255, 255, 255, 0.9);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message {
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+            color: var(--dark);
+            line-height: 1.8;
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(168, 213, 255, 0.3), rgba(255, 198, 217, 0.3));
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .reasons-container {
+            margin: 25px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255, 198, 217, 0.2), rgba(168, 213, 255, 0.2));
+            border-radius: 15px;
+        }
+
+        .reasons-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+            color: var(--purple);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .reason-item {
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
+            color: var(--dark);
+            padding: 10px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .reason-emoji {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            flex-shrink: 0;
+        }
+
+        .big-heart {
+            font-size: clamp(3rem, 8vw, 4rem);
+            background: linear-gradient(135deg, var(--primary), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: heartbeat 1.5s ease-in-out infinite;
+            display: inline-block;
+            margin: 20px 0;
+            filter: drop-shadow(0 0 10px rgba(74, 144, 226, 0.5));
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            25% {
+                transform: scale(1.2);
+            }
+            50% {
+                transform: scale(1);
+            }
+        }
+
+        .birthday-status {
+            font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+            font-weight: 600;
+            color: var(--primary);
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.15), rgba(155, 89, 182, 0.15));
+            border-radius: 15px;
+        }
+
+        .memory-note {
+            font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+            color: var(--purple);
+            font-style: italic;
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--primary);
+            animation: confetti-fall 3s linear infinite;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .container {
+                padding: 35px 25px;
+                border-radius: 25px;
+            }
+
+            .countdown {
+                gap: 12px;
+            }
+
+            .time-box {
+                padding: 18px 8px;
+            }
+
+            .click-prompt {
+                padding: 35px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            .countdown {
+                gap: 10px;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .time-box {
+                padding: 15px 8px;
+            }
+
+            .message, .reasons-container {
+                padding: 15px;
+            }
+
+            .reason-item {
+                padding: 8px;
+                font-size: 0.9rem;
+            }
+
+            .click-prompt {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 25px 15px;
+            }
+
+            .countdown {
+                gap: 8px;
+            }
+
+            .time-box {
+                padding: 12px 5px;
+                border-radius: 12px;
+            }
+
+            .click-prompt {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-bg" id="heartsContainer"></div>
+    
+    <div class="click-screen" id="clickScreen">
+        <div class="click-prompt">
+            <h2 class="click-title">I have something special for you...</h2>
+            <p class="click-subtitle">Click anywhere to reveal my heart 💙</p>
+            <div class="click-counter" id="clickCounter"></div>
+        </div>
+    </div>
+    
+    <div class="container" id="mainContainer" style="display: none;">
+        <h1 class="title" id="title" style="opacity: 0;">Happy 26th Birthday</h1>
+        <p class="subtitle" id="subtitle" style="opacity: 0;">To the One Who Colors My World 💖</p>
+        
+        <div class="love-quote" id="loveQuote" style="opacity: 0;">
+            "In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine."
+        </div>
+        
+        <div class="countdown" id="countdown" style="opacity: 0;">
+            <div class="time-box">
+                <span class="time-number" id="days">00</span>
+                <span class="time-label">Days</span>
+            </div>
+            <div class="time-box">
+                <span class="time-number" id="hours">00</span>
+                <span class="time-label">Hours</span>
+            </div>
+            <div class="time-box">
+                <span class="time-number" id="minutes">00</span>
+                <span class="time-label">Minutes</span>
+            </div>
+            <div class="time-box">
+                <span class="time-number" id="seconds">00</span>
+                <span class="time-label">Seconds</span>
+            </div>
+        </div>
+        
+        <div class="birthday-status" id="status" style="opacity: 0;"></div>
+        
+        <div class="reasons-container" id="reasons" style="opacity: 0;">
+            <h3 class="reasons-title">Why I Love You</h3>
+            <div class="reason-item">
+                <span class="reason-emoji">⏰</span>
+                <span>I'll wait until the right time comes - you're worth every moment</span>
+            </div>
+            <div class="reason-item">
+                <span class="reason-emoji">🌈</span>
+                <span>I hope tumhe wo sari happiness mile jo tumhe chahiye</span>
+            </div>
+            <div class="reason-item">
+                <span class="reason-emoji">🚀</span>
+                <span>Tum bohot tarakki kro - I believe in your dreams</span>
+            </div>
+            <div class="reason-item">
+                <span class="reason-emoji">🙏</span>
+                <span>Mahadev tumhe hamesha sukhi salamat rakhe</span>
+            </div>
+            <div class="reason-item">
+                <span class="reason-emoji">😊</span>
+                <span>Khush raho always - your happiness is my happiness</span>
+            </div>
+            <div class="reason-item">
+                <span class="reason-emoji">💙</span>
+                <span>You're my best friend, my everything</span>
+            </div>
+        </div>
+        
+        <div class="message" id="message" style="opacity: 0;">
+            Every moment with you is a precious gift that I treasure deeply. You've filled my life with joy, laughter, and endless love. On your special day, I want you to know that you mean everything to me. Here's to celebrating you today and always! 🌟
+        </div>
+        
+        <div class="big-heart" id="bigHeart" style="opacity: 0;">❤️</div>
+        
+        <div class="memory-note" id="memoryNote" style="opacity: 0;">
+            "May this year bring you all the happiness your heart can hold" 💕
+        </div>
+    </div>
+
+    <script>
+        let clickCount = 0;
+        let revealStep = 0;
+        const clickScreen = document.getElementById('clickScreen');
+        const clickCounter = document.getElementById('clickCounter');
+        const mainContainer = document.getElementById('mainContainer');
+        
+        const elementsToReveal = [
+            document.getElementById('title'),
+            document.getElementById('subtitle'),
+            document.getElementById('loveQuote'),
+            document.getElementById('countdown'),
+            document.getElementById('status'),
+            document.getElementById('reasons'),
+            document.getElementById('message'),
+            document.getElementById('bigHeart'),
+            document.getElementById('memoryNote')
+        ];
+
+        clickScreen.addEventListener('click', function() {
+            clickCount++;
+            
+            if (clickCount === 1) {
+                clickCounter.textContent = '💙';
+            } else if (clickCount === 2) {
+                clickCounter.textContent = '💙💜';
+            } else if (clickCount >= 3) {
+                clickCounter.textContent = '💙💜💕';
+                
+                setTimeout(() => {
+                    clickScreen.classList.add('fade-out');
+                    setTimeout(() => {
+                        clickScreen.style.display = 'none';
+                        mainContainer.style.display = 'block';
+                        revealElements();
+                    }, 500);
+                }, 300);
+            }
+        });
+
+        function revealElements() {
+            if (revealStep < elementsToReveal.length) {
+                const element = elementsToReveal[revealStep];
+                element.classList.add('reveal');
+                revealStep++;
+                
+                const delay = (revealStep === 4 || revealStep === 6) ? 800 : 600;
+                setTimeout(revealElements, delay);
+            } else {
+                startCountdownAndEffects();
+            }
+        }
+
+        function startCountdownAndEffects() {
+            createFloatingHearts();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        function createFloatingHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartSymbols = ['❤️', '💕', '💖', '💗', '💝', '💞', '💙', '💜'];
+            
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.textContent = heartSymbols[Math.floor(Math.random() * heartSymbols.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                container.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 7000);
+            }, 300);
+        }
+
+        function updateCountdown() {
+            const birthday = new Date('2026-05-25T00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = birthday - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+            const statusEl = document.getElementById('status');
+            
+            if (distance < 0) {
+                statusEl.textContent = '🎉 It\'s Your Birthday! Happy 26th Birthday My Love! 🎉';
+                createConfetti();
+            } else if (days === 0) {
+                statusEl.textContent = '🎂 Today is the day! Get ready for surprises! 🎂';
+            } else if (days === 1) {
+                statusEl.textContent = '✨ Just 1 more day until your special day! ✨';
+            } else if (days <= 7) {
+                statusEl.textContent = `💫 Only ${days} days until I can celebrate you turning 26! 💫`;
+            } else {
+                statusEl.textContent = `Counting down the days until your 26th birthday... 💙`;
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#4a90e2', '#5b7ce6', '#667eea', '#9b59b6', '#e94ca3', '#ff6b9d', '#ff8dc7'];
+            setInterval(() => {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => confetti.remove(), 3000);
+            }, 100);
+        }
+    </script>
+</body>
+</html>
